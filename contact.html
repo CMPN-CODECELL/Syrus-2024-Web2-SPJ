@@ -51,12 +51,20 @@
 <section class="contact">
   <div class="container">
     <h2>Contact Us</h2>
-    <p>Reach out to us via phone or email:</p>
+    <p >Fill out the form below to get in touch with us:</p>
     
-    <div style="text-align: center;">
-      <p>Phone: +1 (800) 123-4567</p>
-      <p>Email: <a href="mailto:info@alzheimerssupporthub.com">info@alzheimerssupporthub.com</a></p>
-    </div>
+    <form action="submit_contact.php" method="POST" style="text-align: center;">
+      <label for="name">Your Name:</label><br>
+      <input type="text" id="name" name="name" required><br>
+
+      <label for="email">Your Email:</label><br>
+      <input type="email" id="email" name="email" required><br>
+
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="4" required></textarea><br>
+
+      <input type="submit" value="Submit">
+    </form>
   </div>
 </section>
 
