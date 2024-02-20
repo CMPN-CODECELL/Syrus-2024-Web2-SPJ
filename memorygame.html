@@ -1,82 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basic Memory Game</title>
-  <style>
-    .card {
-      width: 100px;
-      height: 100px;
-      background-color: #ccc;
-      margin: 5px;
-      display: inline-block;
-      text-align: center;
-      line-height: 100px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concentration Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .card {
+    width: 100px;
+    height: 150px;
+    border: 2px solid #000;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #ccc; /* Set default background color */
+    font-size: 50px; /* Adjust font size for symbol */
+    line-height: 150px; /* Align symbol vertically */
+    text-align: center; /* Align symbol horizontally */
+    color: black; /* Change symbol color to black */
+  }
+  .hidden {
+    background-color: #ccc;
+    color: transparent;
+  }
+  .matched {
+    background-color: lightgreen; /* Set color for matched cards */
+  }
+</style>
 </head>
 <body>
-  <div id="gameBoard"></div>
+<h1>Concentration Game</h1>
+<div id="gameBoard">
+</div>
 
-  <script>
+<script>
+const symbols = ['♠', '♣', '♥', '♦', '♠', '♣', '♥', '♦', '♠', '♣', '♥', '♦', '♠', '♣', '♥', '♦']; // Symbols for cards
+let flippedCard = null;
+let matchedCards = [];
+
+function createBoard() {
     const gameBoard = document.getElementById('gameBoard');
-    const colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown'];
-    const cards = [...colors, ...colors]; // Duplicate colors to match pairs
-
-    // Shuffle cards
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-
-    // Create cards
-    cards.forEach((color, index) => {
-      const card = document.createElement('div');
-      card.classList.add('card');
-      card.dataset.index = index;
-      card.style.backgroundColor = 'white'; // Hide color
-      card.addEventListener('click', () => revealCard(card));
-      gameBoard.appendChild(card);
+    symbols.forEach(symbol => {
+        const card = document.createElement('div');
+        card.classList.add('card', 'hidden');
+        card.textContent = symbol;
+        card.addEventListener('click', () => flipCard(card));
+        gameBoard.appendChild(card);
     });
+}
 
-    let flippedCards = [];
-    let matchedCards = [];
-
-    function revealCard(card) {
-      const index = parseInt(card.dataset.index);
-
-      if (flippedCards.length < 2 && !flippedCards.includes(card) && !matchedCards.includes(index)) {
-        card.style.backgroundColor = colors[index];
-        flippedCards.push(card);
-
-        if (flippedCards.length === 2) {
-          setTimeout(checkMatch, 1000);
+function flipCard(card) {
+    if (!card.classList.contains('hidden')) return; // Prevent flipping already revealed cards
+    if (flippedCard) {
+        if (flippedCard === card) return; // Prevent flipping the same card twice
+        card.classList.remove('hidden');
+        if (flippedCard.textContent === card.textContent) {
+            flippedCard.classList.add('matched');
+            card.classList.add('matched');
+            matchedCards.push(flippedCard, card);
+            if (matchedCards.length === symbols.length * 2) {
+                setTimeout(() => alert('Congratulations! You matched all the cards!'), 500);
+            }
+            flippedCard = null;
+        } else {
+            setTimeout(() => {
+                flippedCard.classList.add('hidden');
+                card.classList.add('hidden');
+                flippedCard = null;
+            }, 1000);
         }
-      }
+    } else {
+        flippedCard = card;
+        card.classList.remove('hidden');
     }
+}
 
-    function checkMatch() {
-      const [card1, card2] = flippedCards;
-      const index1 = parseInt(card1.dataset.index);
-      const index2 = parseInt(card2.dataset.index);
+// Shuffle the symbols array
+for (let i = symbols.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [symbols[i], symbols[j]] = [symbols[j], symbols[i]];
+}
 
-      if (colors[index1] === colors[index2]) {
-        matchedCards.push(index1, index2);
-        flippedCards = [];
-
-        if (matchedCards.length === cards.length) {
-          alert('Congratulations! You won!');
-        }
-      } else {
-        setTimeout(() => {
-          card1.style.backgroundColor = 'white';
-          card2.style.backgroundColor = 'white';
-          flippedCards = [];
-        }, 500);
-      }
-    }
-  </script>
+createBoard();
+</script>
 </body>
 </html>
