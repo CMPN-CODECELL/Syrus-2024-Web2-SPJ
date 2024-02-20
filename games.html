@@ -18,13 +18,12 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center align content */
         }
         h1 {
-            text-align: center;
             color: #333;
         }
         .game-option {
-            text-align: center;
             margin-top: 20px;
         }
         .game-link {
@@ -39,15 +38,40 @@
         .game-link:hover {
             background-color: #0056b3;
         }
+        .game-thumbnail-container {
+            margin-bottom: 20px; /* Add margin for separation */
+        }
+        .game-thumbnail {
+            display: block;
+            width: 100px; /* Adjust width as needed */
+            height: auto;
+            margin: 0 auto 10px; /* Center align and add margin */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #fff; /* Add background color */
+            padding: 5px; /* Add padding for separation */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Games for Alzheimer's Care Hub</h1>
-        <div class="game-option">
+        <!-- Thumbnails for the games -->
+        <div class="game-thumbnail-container">
+            <img class="game-thumbnail" src="sudoku.png" alt="Sudoku Thumbnail">
             <a class="game-link" href="sudoku.html">Play Sudoku</a>
+        </div>
+        <div class="game-thumbnail-container">
+            <img class="game-thumbnail" src="schulte.png" alt="Schulte's Table Thumbnail">
             <a class="game-link" href="schlute.html">Play Schulte's Table</a>
+        </div>
+        <div class="game-thumbnail-container">
+            <img class="game-thumbnail" src="tictak.png" alt="Tic Tac Toe Thumbnail">
             <a class="game-link" href="tictac.html">Play Tic Tac Toe</a>
+        </div>
+        <div class="game-thumbnail-container">
+            <img class="game-thumbnail" src="memorygames.png" alt="Memory Games Thumbnail">
+            <a class="game-link" href="memorygame.html">Play Memory Games</a>
         </div>
     </div>
 

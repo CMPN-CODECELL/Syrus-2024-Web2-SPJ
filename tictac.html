@@ -8,6 +8,11 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
     h1 {
@@ -50,21 +55,31 @@
         transform: scale(1.2);
       }
     }
+
+    .btn-container {
+      margin-top: 20px;
+    }
+
+    .btn-container button {
+      margin: 0 10px;
+    }
   </style>
 </head>
 <body>
   <h1>Tic-Tac-Toe Game</h1>
   <div class="board" id="board"></div>
 
-  <!-- Button for index.html -->
-  <a href="index.html">
-    <button>Go to Home Page</button>
-  </a>
+  <div class="btn-container">
+    <!-- Button for index.html -->
+    <a href="index.html">
+      <button>Go to Home Page</button>
+    </a>
 
-  <!-- Button for games.html -->
-  <a href="games.html">
-    <button>Play Another Game </button>
-  </a>
+    <!-- Button for games.html -->
+    <a href="games.html">
+      <button>Play Another Game </button>
+    </a>
+  </div>
 
   <script>
     const board = document.getElementById('board');

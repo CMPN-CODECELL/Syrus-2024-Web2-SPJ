@@ -5,30 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - Alzheimer's Support Hub</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+    footer {
+      margin-top: auto;
+      background-color: rgba(53, 52, 52, 0.811);
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <h1>Welcome to Alzheimer's Support Hub</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="games.html">Games</a>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <!-- Add image tag -->
+      <img src="azheimer.png" alt="Alzheimer's Support Hub Logo" class="logo">
+      <h1>Welcome to Alzheimer's Support Hub</h1>
+      <nav align="center">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#" id="gamesButton">Games</a></li>
+          <!-- New buttons for resources and chatbot -->
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="#" id="chatbotButton">Chatbot</a></li>
+          <li class="sos-button"><a href="sos.html">SOS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
 
 <section class="contact">
   <div class="container">
     <h2>Contact Us</h2>
-    <p>Fill out the form below to get in touch with us:</p>
+    <p >Fill out the form below to get in touch with us:</p>
     
-    <form action="submit_contact.php" method="POST">
+    <form action="submit_contact.php" method="POST" style="text-align: center;">
       <label for="name">Your Name:</label><br>
       <input type="text" id="name" name="name" required><br>
 
