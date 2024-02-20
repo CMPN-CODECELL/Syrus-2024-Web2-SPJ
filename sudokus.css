@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .sudoku-grid {
+    border: 2px solid #000;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px);
+  }
+  
+  .row:nth-child(3n) .cell,
+  .row:nth-child(3n+1) .cell {
+    border-bottom: 2px solid #000;
+  }
+  
+  .cell {
+    border-right: 2px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #fff;
+  }
+  
+  .cell:last-child {
+    border-right: none;
+  }
+  
+  .row:last-child .cell {
+    border-bottom: none;
+  }
+  

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Schulte Table 4x4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .table {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 5px;
+    }
+    .cell {
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="table">
+    <!-- JavaScript will populate this area with randomized numbers -->
+  </div>
+
+  <script>
+    const table = document.querySelector('.table');
+    const numbers = Array.from({ length: 16 }, (_, i) => i + 1);
+    const shuffledNumbers = numbers.sort(() => Math.random() - 0.5);
+
+    shuffledNumbers.forEach(number => {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.textContent = number;
+      cell.addEventListener('click', () => {
+        if (parseInt(cell.textContent) === 1) {
+          cell.style.backgroundColor = 'green';
+        }
+      });
+      table.appendChild(cell);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games for Alzheimer's Care Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .game-option {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .game-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .game-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Games for Alzheimer's Care Hub</h1>
+        <div class="game-option">
+            <a class="game-link" href="sudoku.html">Play Sudoku</a>
+            <a class="game-link" href="schlute.html">Play Schulte's Table</a>
+            <a class="game-link" href="tictac.html">Play Tic Tac Toe</a>
+        </div>
+    </div>
+
+    <script>
+        // Add back button dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            var container = document.querySelector('.container');
+            var backButton = document.createElement('a');
+            backButton.textContent = 'Back to Home';
+            backButton.href = 'index.html';
+            backButton.style.display = 'block';
+            backButton.style.textAlign = 'center';
+            backButton.style.marginTop = '20px';
+            container.appendChild(backButton);
+        });
+    </script>
+</body>
+</html>

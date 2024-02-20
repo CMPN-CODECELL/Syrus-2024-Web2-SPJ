@@ -5,6 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alzheimer's Support Hub</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add your custom styles here */
+    .login-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,6 +41,7 @@
         <li><a href="about.html">About Us</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#" id="gamesButton">Games</a></li>
       </ul>
     </nav>
   </div>
@@ -26,7 +51,7 @@
   <div class="container">
     <h2>Empowering Independence, Building Community</h2>
     <p>At Alzheimer's Support Hub, we are dedicated to revolutionizing the support landscape for individuals living with Alzheimer's disease. Our holistic approach integrates innovative features to enhance cognitive abilities, foster independence, and provide a supportive community for both individuals with Alzheimer's and their caregivers.</p>
-    <a href="#" class="btn">Get Started</a>
+    <a href="#" class="btn" id="getStartedButton">Sign up to Get Started</a>
   </div>
 </section>
 
@@ -50,6 +75,45 @@
     <p>Alzheimer's Support Hub © 2024. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
   </div>
 </footer>
+
+<!-- Login Popup -->
+<div class="overlay" id="overlay"></div>
+<div class="login-popup" id="loginPopup">
+  <h2>Login</h2>
+  <!-- Your login form goes here -->
+  <form>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+</div>
+
+<script>
+  // Get elements
+  const getStartedButton = document.getElementById('getStartedButton');
+  const overlay = document.getElementById('overlay');
+  const loginPopup = document.getElementById('loginPopup');
+  const gamesButton = document.getElementById('gamesButton');
+
+  // Event listeners
+  getStartedButton.addEventListener('click', function() {
+    overlay.style.display = 'block';
+    loginPopup.style.display = 'block';
+  });
+
+  overlay.addEventListener('click', function() {
+    overlay.style.display = 'none';
+    loginPopup.style.display = 'none';
+  });
+
+  gamesButton.addEventListener('click', function() {
+    // Add functionality to the games button
+    // For example, redirect to the games page
+    window.location.href = 'games.html'; // Change 'games.html' to your actual games page URL
+  });
+</script>
 
 </body>
 </html>
