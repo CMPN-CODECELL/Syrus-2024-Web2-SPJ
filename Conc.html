@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concentration Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  .card {
+    width: 100px;
+    height: 150px;
+    border: 2px solid #000;
+    margin: 5px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #ccc; /* Set default background color */
+    font-size: 50px; /* Adjust font size for symbol */
+    line-height: 150px; /* Align symbol vertically */
+    text-align: center; /* Align symbol horizontally */
+    color: black; /* Change symbol color to black */
+  }
+  .hidden {
+    background-color: #ccc;
+    color: transparent;
+  }
+  .matched {
+    background-color: lightgreen; /* Set color for matched cards */
+  }
+</style>
+</head>
+<body>
+<h1>Concentration Game</h1>
+<div id="gameBoard">
+</div>
+
+<script>
+const symbols = ['♠', '♣', '♥', '♦', '♠', '♣', '♥', '♦', '♠', '♣', '♥', '♦', '♠', '♣', '♥', '♦']; // Symbols for cards
+let flippedCard = null;
+let matchedCards = [];
+
+function createBoard() {
+    const gameBoard = document.getElementById('gameBoard');
+    symbols.forEach(symbol => {
+        const card = document.createElement('div');
+        card.classList.add('card', 'hidden');
+        card.textContent = symbol;
+        card.addEventListener('click', () => flipCard(card));
+        gameBoard.appendChild(card);
+    });
+}
+
+function flipCard(card) {
+    if (!card.classList.contains('hidden')) return; // Prevent flipping already revealed cards
+    if (flippedCard) {
+        if (flippedCard === card) return; // Prevent flipping the same card twice
+        card.classList.remove('hidden');
+        if (flippedCard.textContent === card.textContent) {
+            flippedCard.classList.add('matched');
+            card.classList.add('matched');
+            matchedCards.push(flippedCard, card);
+            if (matchedCards.length === symbols.length * 2) {
+                setTimeout(() => alert('Congratulations! You matched all the cards!'), 500);
+            }
+            flippedCard = null;
+        } else {
+            setTimeout(() => {
+                flippedCard.classList.add('hidden');
+                card.classList.add('hidden');
+                flippedCard = null;
+            }, 1000);
+        }
+    } else {
+        flippedCard = card;
+        card.classList.remove('hidden');
+    }
+}
+
+// Shuffle the symbols array
+for (let i = symbols.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [symbols[i], symbols[j]] = [symbols[j], symbols[i]];
+}
+
+createBoard();
+</script>
+</body>
+</html>
