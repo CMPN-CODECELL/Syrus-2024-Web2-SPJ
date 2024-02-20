@@ -28,24 +28,34 @@
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 999;
     }
+    .sos-button {
+      float: right;
+      color: rgb(255, 251, 0);
+      margin-right: 20px;
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <h1>Welcome to Alzheimer's Support Hub</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="#" id="gamesButton">Games</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <h1 align="center">Welcome to Alzheimer's Support Hub</h1>
+      <nav>
+        <ul align="center">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#" id="gamesButton">Games</a></li>
+          <!-- New buttons for resources and chatbot -->
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="#" id="chatbotButton">Chatbot</a></li>
+          <li class="sos-button"><a href="sos.html">SOS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
 
 <section class="hero">
   <div class="container">
@@ -90,12 +100,17 @@
   </form>
 </div>
 
+<!-- Embedding the iframe -->
+<iframe src="https://chitchatter.im/public/23312d77-2d2d-4f22-8fe7-4cf9c4182bce?embed=1" allow="camera;microphone;display-capture;fullscreen" width="800" height="800" id="chatbotFrame" style="display: none;"></iframe>
+
 <script>
   // Get elements
   const getStartedButton = document.getElementById('getStartedButton');
   const overlay = document.getElementById('overlay');
   const loginPopup = document.getElementById('loginPopup');
   const gamesButton = document.getElementById('gamesButton');
+  const chatbotButton = document.getElementById('chatbotButton');
+  const chatbotFrame = document.getElementById('chatbotFrame');
 
   // Event listeners
   getStartedButton.addEventListener('click', function() {
@@ -104,7 +119,7 @@
   });
 
   overlay.addEventListener('click', function() {
-    overlay.style.display = 'none';
+    overlay.style.display = 'none'; 
     loginPopup.style.display = 'none';
   });
 
@@ -112,6 +127,11 @@
     // Add functionality to the games button
     // For example, redirect to the games page
     window.location.href = 'games.html'; // Change 'games.html' to your actual games page URL
+  });
+
+  chatbotButton.addEventListener('click', function() {
+    // Display the chatbot iframe
+    chatbotFrame.style.display = 'block';
   });
 </script>
 

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alzheimer's Support Hub</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add your custom styles here */
+    .login-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>Welcome to Alzheimer's Support Hub</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="#" id="gamesButton">Games</a></li>
+        <!-- New buttons for resources and chatbot -->
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="chatbot.html">Chatbot</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h2>Empowering Independence, Building Community</h2>
+    <p>At Alzheimer's Support Hub, we are dedicated to revolutionizing the support landscape for individuals living with Alzheimer's disease. Our holistic approach integrates innovative features to enhance cognitive abilities, foster independence, and provide a supportive community for both individuals with Alzheimer's and their caregivers.</p>
+    <a href="#" class="btn" id="getStartedButton">Sign up to Get Started</a>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>Our Features</h2>
+    <div class="feature">
+      <h3>Memory-Enhancing Games</h3>
+      <p>Engage your mind with our interactive and stimulating memory games designed to improve cognitive function and memory retention.</p>
+    </div>
+    <div class="feature">
+      <h3>Personalized Reminders</h3>
+      <p>Stay organized and on track with personalized reminders for daily activities, medication schedules, appointments, and more.</p>
+    </div>
+    <!-- Add more features here -->
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Alzheimer's Support Hub © 2024. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
+  </div>
+</footer>
+
+<!-- Login Popup -->
+<div class="overlay" id="overlay"></div>
+<div class="login-popup" id="loginPopup">
+  <h2>Login</h2>
+  <!-- Your login form goes here -->
+  <form>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+</div>
+
+<!-- Firebase JavaScript SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+
+<script>
+  // Firebase configuration (replace with your own Firebase project credentials)
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Initialize Firebase
+  try {
+    firebase.initializeApp(firebaseConfig);
+  } catch (error) {
+    console.error("Firebase initialization error", error.stack);
+  }
+  
+  const database = firebase.database();
+
+  // Function to display a new message
+  function displayMessage(user, message) {
+    const messagesContainer = document.getElementById('messages');
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.innerHTML = `<span class="user">${user}:</span> ${message}`;
+    messagesContainer.appendChild(messageElement);
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  // Event listener for submitting the form
+  document.getElementById('chat-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const userInput = document.getElementById('message-input');
+    const message = userInput.value.trim();
+    if (message !== '') {
+      // Send message to Firebase
+      database.ref('messages').push({
+        user: 'You',
+        message: message
+      });
+      userInput.value = '';
+    }
+  });
+
+  // Firebase listener for new messages
+  database.ref('messages').on('child_added', function(snapshot) {
+    const messageData = snapshot.val();
+    displayMessage(messageData.user, messageData.message);
+  });
+
+  // Pre-defined initial messages
+  displayMessage('Bot', 'Welcome to Alzheimer\'s Chat! Feel free to start the conversation.');
+  displayMessage('Bot', 'Note: This chat is synced in real-time across multiple devices.');
+
+  // Fake bot responses after 1 second
+  setTimeout(() => {
+    displayMessage('Bot', 'How can I assist you today?');
+  }, 1000);
+</script>
+
+<script>
+  // Get elements
+  const getStartedButton = document.getElementById('getStartedButton');
+  const overlay = document.getElementById('overlay');
+  const loginPopup = document.getElementById('loginPopup');
+  const gamesButton = document.getElementById('gamesButton');
+
+  // Event listeners
+  getStartedButton.addEventListener('click', function() {
+    overlay.style
