@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Schulte Table</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: limegreen; /* Set background color to lime green */
+  }
+  #container {
+    text-align: center;
+    background-color: white; /* Set container background color to white */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    margin-bottom: 20px;
+  }
+  td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .correct {
+    background-color: lightgreen;
+  }
+  .wrong {
+    background-color: lightcoral;
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <label for="size">Select Table Size:</label>
+  <select id="size" onchange="generateRandomTable()">
+    <option value="4">4x4</option>
+    <option value="5">5x5</option>
+    <option value="6">6x6</option>
+  </select>
+
+  <table id="schulteTable"></table>
+  <p id="timer">Time: 0 seconds</p>
+  <button onclick="startTimer()">Start Timer</button>
+</div>
+
+<script>
+let currentNumber = 1;
+let startTime, endTime;
+let timerInterval;
+
+function generateRandomTable() {
+    clearInterval(timerInterval); // Reset timer when generating new table
+    startTime = null;
+    endTime = null;
+
+    const size = document.getElementById('size').value;
+    const rows = size;
+    const cols = size;
+
+    const numbers = Array.from({ length: rows * cols }, (_, i) => i + 1);
+    numbers.sort(() => Math.random() - 0.5);
+
+    const table = document.getElementById('schulteTable');
+    table.innerHTML = '';
+
+    for (let i = 0; i < rows; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < cols; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = numbers[i * cols + j];
+            cell.onclick = () => checkNumber(parseInt(cell.textContent), cell);
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+
+    currentNumber = 1;
+}
+
+function startTimer() {
+    startTime = new Date().getTime();
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    if (startTime) {
+        const currentTime = new Date().getTime();
+        const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+        document.getElementById('timer').textContent = `Time: ${elapsedTime} seconds`;
+    }
+}
+
+function stopTimer() {
+    endTime = new Date().getTime();
+}
+
+function checkNumber(number, cell) {
+    if (number === currentNumber) {
+        cell.classList.add('correct');
+        currentNumber++;
+        if (currentNumber > parseInt(document.getElementById('size').value) ** 2) {
+            alert('Congratulations! You completed the Schulte Table!');
+            stopTimer();
+            clearInterval(timerInterval);
+            generateRandomTable();
+        }
+    } else {
+        cell.classList.add('wrong');
+        setTimeout(() => {
+            cell.classList.remove('wrong');
+        }, 500);
+    }
+}
+
+generateRandomTable();
+</script>
+</body>
+</html>
