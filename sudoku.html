@@ -1,31 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sudoku Game</title>
-  <link rel="stylesheet" href="sudokus.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudoku Game</title>
+<style>
+  body {
+    background-color: limegreen;
+  }
+  table {
+    border-collapse: collapse;
+    border: 2px solid black;
+    margin: auto;
+    background-color: white; /* Set the background color of the sudoku box */
+  }
+  td {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .highlight {
+    background-color: #ffff99;
+  }
+  .initial {
+    background-color: lightgrey;
+  }
+</style>
 </head>
 <body>
-  <div class="sudoku-grid">
-    <div class="row">
-      <div class="cell">1</div>
-      <div class="cell">2</div>
-      <div class="cell">3</div>
-      <div class="cell">4</div>
-    </div>
-    <!-- More rows and cells go here -->
-  </div>
-  <script src="script.js"></script>
+<h1 style="text-align: center;">SUDOKU</h1>
+<table id="sudokuTable"></table>
+<p id="result"></p>
 
-  <!-- Button to navigate to index.html -->
-  <a href="index.html">
-    <button>Go to Home page</button>
-  </a>
+<script>
+let sudokuPuzzle;
+let selectedCell = null;
 
-  <!-- Button to navigate to games.html -->
-  <a href="games.html">
-    <button>Play Another game</button>
-  </a>
+function generateSudoku() {
+    const table = document.getElementById('sudokuTable');
+    table.innerHTML = '';
+    sudokuPuzzle = generateRandomSudoku();
+
+    for (let i = 0; i < 9; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < 9; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = sudokuPuzzle[i][j] === 0 ? '' : sudokuPuzzle[i][j];
+            cell.onclick = () => selectCell(i, j);
+            if (sudokuPuzzle[i][j] !== 0) {
+                cell.classList.add('initial');
+            }
+            row.appendChild(cell);
+        }
+        table.appendChild(row);
+    }
+}
+
+function generateRandomSudoku() {
+    // Generate a random completed Sudoku board
+    const board = [];
+    for (let i = 0; i < 9; i++) {
+        board.push([]);
+        for (let j = 0; j < 9; j++) {
+            board[i].push(0);
+        }
+    }
+    solveSudoku(board);
+
+    // Remove random cells to create a puzzle
+    const puzzle = JSON.parse(JSON.stringify(board)); // Clone the board
+    for (let i = 0; i < 40; i++) { // Adjust the number of cells to remove for difficulty
+        const row = Math.floor(Math.random() * 9);
+        const col = Math.floor(Math.random() * 9);
+        puzzle[row][col] = 0;
+    }
+
+    return puzzle;
+}
+
+function solveSudoku(board) {
+    const emptyCell = findEmptyCell(board);
+    if (!emptyCell) {
+        return true; // Puzzle solved
+    }
+
+    const [row, col] = emptyCell;
+    for (let num = 1; num <= 9; num++) {
+        if (isValid(board, row, col, num)) {
+            board[row][col] = num;
+            if (solveSudoku(board)) {
+                return true;
+            }
+            board[row][col] = 0; // Backtrack
+        }
+    }
+    return false; // No solution found
+}
+
+function isValid(board, row, col, num) {
+    // Check if the number is not already in the same row, column, or box
+    return (
+        !usedInRow(board, row, num) &&
+        !usedInColumn(board, col, num) &&
+        !usedInBox(board, row - row % 3, col - col % 3, num)
+    );
+}
+
+function usedInRow(board, row, num) {
+    return board[row].includes(num);
+}
+
+function usedInColumn(board, col, num) {
+    for (let i = 0; i < 9; i++) {
+        if (board[i][col] === num) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function usedInBox(board, startRow, startCol, num) {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (board[startRow + i][startCol + j] === num) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function findEmptyCell(board) {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (board[i][j] === 0) {
+                return [i, j];
+            }
+        }
+    }
+    return null; // No empty cell found
+}
+
+function selectCell(row, col) {
+    const table = document.getElementById('sudokuTable');
+    if (selectedCell) {
+        const [prevRow, prevCol] = selectedCell;
+        table.rows[prevRow].cells[prevCol].classList.remove('highlight');
+    }
+    selectedCell = [row, col];
+    table.rows[row].cells[col].classList.add('highlight');
+}
+
+function fillNumber(number) {
+    if (selectedCell) {
+        const [row, col] = selectedCell;
+        if (sudokuPuzzle[row][col] === 0 || sudokuPuzzle[row][col] !== number) {
+            const table = document.getElementById('sudokuTable');
+            table.rows[row].cells[col].textContent = number;
+            sudokuPuzzle[row][col] = number;
+            checkSolution();
+        }
+    }
+}
+
+function checkSolution() {
+    let isSolutionCorrect = true;
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (sudokuPuzzle[i][j] !== 0 && !isValid(sudokuPuzzle, i, j, sudokuPuzzle[i][j])) {
+                isSolutionCorrect = false;
+                break;
+            }
+        }
+        if (!isSolutionCorrect) {
+            break;
+        }
+    }
+
+    const resultElement = document.getElementById('result');
+    if (isSolutionCorrect) {
+        resultElement.textContent = 'Congratulations! You solved the Sudoku puzzle!';
+    } else {
+        resultElement.textContent = 'Keep going! Solution is not correct yet.';
+    }
+}
+
+generateSudoku();
+</script>
+<button onclick="generateSudoku()">Generate New Puzzle</button>
+<br><br>
+Fill number: <button onclick="fillNumber(1)">1</button> <button onclick="fillNumber(2)">2</button> <button onclick="fillNumber(3)">3</button> <button onclick="fillNumber(4)">4</button> <button onclick="fillNumber(5)">5</button> <button onclick="fillNumber(6)">6</button> <button onclick="fillNumber(7)">7</button> <button onclick="fillNumber(8)">8</button> <button onclick="fillNumber(9)">9</button>
 </body>
 </html>
