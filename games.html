@@ -51,6 +51,20 @@
             padding: 5px; /* Add padding for separation */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
         }
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 30px; /* Increase padding for bigger button */
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px; /* Increase border-radius for rounded corners */
+            transition: background-color 0.3s ease; /* Add transition for hover effect */
+        }
+        .back-button:hover {
+            background-color: #0056b3; /* Change background color on hover */
+        }
     </style>
 </head>
 <body>
@@ -82,9 +96,7 @@
             var backButton = document.createElement('a');
             backButton.textContent = 'Back to Home';
             backButton.href = 'index.html';
-            backButton.style.display = 'block';
-            backButton.style.textAlign = 'center';
-            backButton.style.marginTop = '20px';
+            backButton.classList.add('back-button'); // Add back-button class
             container.appendChild(backButton);
         });
     </script>

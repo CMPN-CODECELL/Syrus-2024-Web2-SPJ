@@ -18,6 +18,21 @@
             max-width: 600px; /* Reduce the size */
             width: 100%;
         }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -28,5 +43,7 @@
         <script src="https://chitchatter.im/sdk.js"></script>
         <chat-room width="100%" height="600" room="e7548d8f-5129-40f3-a49b-6875125039f1"></chat-room>
     </div>
+    <!-- Back to Home Button -->
+    <button class="back-button" onclick="window.location.href = 'index.html';">Back to Home</button>
 </body>
 </html>

@@ -295,8 +295,29 @@ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ 
 #cell-2-o:checked ~ #cell-4-o:checked ~ #cell-6-o:checked ~ #end #message::before {
   content: "Player 2 won!";
 }
-    /* Add your existing CSS styles here */
 
+.navigation {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
   </style>
 </head>
 <body>
@@ -375,10 +396,15 @@ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ 
       <div id="message" class="center">
         <div>
           <input type="reset" for="tictactoe" value="Play again" />
-          <a href="index.html">  Back to Home</a>
+          <a href="index.html">Back to Home</a>
         </div>
       </div>
     </div>
   </form>
+
+  <div class="navigation">
+    <a href="index.html" class="button">Back to Home</a>
+    <a href="games.html" class="button">Back to Games</a>
+  </div>
 </body>
 </html>

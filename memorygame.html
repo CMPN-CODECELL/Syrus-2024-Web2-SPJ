@@ -29,11 +29,37 @@
   .matched {
     background-color: lightgreen; /* Set color for matched cards */
   }
+  .back-button {
+    margin-top: 20px;
+  }
+  .back-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .back-button a:hover {
+    background-color: #45a049;
+  }
 </style>
 </head>
 <body>
 <h1>Concentration Game</h1>
 <div id="gameBoard">
+</div>
+
+<!-- Back to Home button -->
+<div class="back-button">
+  <a href="index.html">Back to Home</a>
+</div>
+
+<!-- Back to Games button -->
+<div class="back-button">
+  <a href="games.html">Back to Games</a>
 </div>
 
 <script>

@@ -34,19 +34,76 @@
       margin-right: 20px;
     }
     .logo {
-  float: left;
-  border-radius: 10px; /* Adjust the radius as needed */
-  margin-right: 10px; /* Add some spacing between the logo and the text */
-  margin-top: 20px; /* Increase the distance from the top */
-  margin-left: 100px;
-  width: 300px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-}
-body {
+      float: left;
+      border-radius: 10px; /* Adjust the radius as needed */
+      margin-right: 10px; /* Add some spacing between the logo and the text */
+      margin-top: 20px; /* Increase the distance from the top */
+      margin-left: 100px;
+      width: 300px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+    body {
       background-color: rgb(247, 103, 103);
       text-align: center; /* Center-align text */
-      line-height: 1.6; /* Add line spacing */
+      line-height: 1.8; /* Add line spacing */
     }
+    .apple {
+      width: 80%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .photos {
+      text-align: center;
+    }
+    .photos .container {
+      position: relative;
+    }
+    .photos .apple:hover {
+      transform: scale(1.1);
+  
+    }
+    /* FAQ Section Styles */
+.faq {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.faq .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.faq .question {
+  margin-bottom: 20px;
+}
+
+.faq .question h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.faq .question p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.social-links {
+  display: inline-block;
+}
+
+.social-links p {
+  margin-right: 10px; /* Adjust as needed for spacing between text and icons */
+  padding-bottom: 10px; /* Add padding from the bottom */
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 
 
   </style>
@@ -74,35 +131,77 @@ body {
     </div>
   </header>
   
-  
-
 <section class="hero">
   <div class="container">
     <h2>Empowering Independence, Building Community</h2>
     <p>At Alzheimer's Support Hub, we are dedicated to revolutionizing the support landscape for individuals living with Alzheimer's disease. Our holistic approach integrates innovative features to enhance cognitive abilities, foster independence, and provide a supportive community for both individuals with Alzheimer's and their caregivers.</p>
   </div>
 </section>
-
+<section class="photos">
+  <div class="container">
+    <img src="patient doctor.jpg" alt="zzz" class="apple">
+  </div>
+</section>
 <section class="features">
   <div class="container">
     <h2>Our Features</h2>
     <div class="feature">
-      <h3>Memory-Enhancing Games</h3>
+      <h3><u><strong>Memory-Enhancing Games</strong></u></h3>
       <p>Engage your mind with our interactive and stimulating memory games designed to improve cognitive function and memory retention.</p>
     </div>
     <div class="feature">
-      <h3>Free Resources and Online Games</h3>
+      <h3><u><strong>Free Resources</strong></u></h3>
       <p>Stay organized and on track with personalized reminders for daily activities, medication schedules, appointments, and more.</p>
     </div>
     <!-- Add more features here -->
+    <div class="feature">
+      <h3><u><strong>Games to improve cognitive abilities</strong></u></h3>
+      <p>Play Games like sudoku Schulte's table and others to keep track of your cognitive abilities and for memory enhancement</p>
+    </div>
+    <div class="feature">
+      <h3><u><strong>Watch This Youtube Video to Learn More</strong></u></h3>
+    </div>
+  </div>
+</section>
+  <div class="yt">
+    <embed src="https://www.youtube.com/embed/wfLP8fFrOp0" type="" width="1000" height="600">
+  </div>
+  <!-- After the YouTube video -->
+<section class="faq">
+  <div class="container">
+    <h2><ul> Frequently Asked Questions (FAQ)</ul></h2>
+    <div class="question">
+      <h3>What are the early signs of Alzheimer's disease?</h3>
+      <p>The early signs of Alzheimer's disease may include memory loss that disrupts daily life, challenges in planning or problem-solving, difficulty completing familiar tasks, confusion with time or place, and changes in mood or personality.</p>
+    </div>
+    <div class="question">
+      <h3>How is Alzheimer's disease diagnosed?</h3>
+      <p>Alzheimer's disease is diagnosed through a comprehensive assessment that may include medical history evaluation, physical and neurological exams, cognitive tests, and brain imaging.</p>
+    </div>
+    <!-- Add more questions and answers here -->
+    <div class="question">
+      <h3>Is there a cure for Alzheimer's disease?</h3>
+      <p>Currently, there is no cure for Alzheimer's disease. However, there are treatments and interventions available to manage symptoms and improve quality of life for individuals living with the disease.</p>
+    </div>
   </div>
 </section>
 
+
 <footer>
   <div class="container">
+    <!-- Social Media Links -->
+    <div class="social-links">
+      <p>Connect with us on our Socials </p>
+      <a href="https://www.instagram.com/alzheimerssoc/"><img src="insta.png" alt="Instagram" width="34" height="auto"></a>
+      <a href="https://twitter.com/CDCgov"><img src="twitter.png" alt="Twitter" width="29" height="auto" ></a>
+    </div>
+    <!-- End of Social Media Links -->
     <p>Alzheimer's Support Hub © 2024. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
   </div>
 </footer>
+
+
+
 
 <!-- Login Popup -->
 <div class="overlay" id="overlay"></div>
