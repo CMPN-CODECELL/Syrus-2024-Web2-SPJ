@@ -34,21 +34,34 @@
       margin-right: 20px;
     }
     .logo {
-  float: left;
-  border-radius: 10px; /* Adjust the radius as needed */
-  margin-right: 10px; /* Add some spacing between the logo and the text */
-  margin-top: 20px; /* Increase the distance from the top */
-  margin-left: 100px;
-  width: 300px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-}
-body {
+      float: left;
+      border-radius: 10px; /* Adjust the radius as needed */
+      margin-right: 10px; /* Add some spacing between the logo and the text */
+      margin-top: 20px; /* Increase the distance from the top */
+      margin-left: 100px;
+      width: 300px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+    body {
       background-color: rgb(247, 103, 103);
       text-align: center; /* Center-align text */
       line-height: 1.6; /* Add line spacing */
     }
-
-
+    .apple {
+      width: 80%;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .photos {
+      text-align: center;
+    }
+    .photos .container {
+      position: relative;
+    }
+    .photos .apple:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -74,15 +87,17 @@ body {
     </div>
   </header>
   
-  
-
 <section class="hero">
   <div class="container">
     <h2>Empowering Independence, Building Community</h2>
     <p>At Alzheimer's Support Hub, we are dedicated to revolutionizing the support landscape for individuals living with Alzheimer's disease. Our holistic approach integrates innovative features to enhance cognitive abilities, foster independence, and provide a supportive community for both individuals with Alzheimer's and their caregivers.</p>
   </div>
 </section>
-
+<section class="photos">
+  <div class="container">
+    <img src="patient doctor.jpg" alt="zzz" class="apple">
+  </div>
+</section>
 <section class="features">
   <div class="container">
     <h2>Our Features</h2>
@@ -91,11 +106,20 @@ body {
       <p>Engage your mind with our interactive and stimulating memory games designed to improve cognitive function and memory retention.</p>
     </div>
     <div class="feature">
-      <h3>Free Resources and Online Games</h3>
+      <h3>Free Resources</h3>
       <p>Stay organized and on track with personalized reminders for daily activities, medication schedules, appointments, and more.</p>
     </div>
     <!-- Add more features here -->
+    <div class="feature">
+      <h3>Games to improve cognitive abilities </h3>
+      <p>Play Games like sudoku Schulte's table and others to keep track of your cognitive abilities and for memory enhancement
+      </p>
+    </div>
   </div>
+  <div class="yt">
+    <embed src="https://www.youtube.com/embed/wfLP8fFrOp0" type="" width="1000" height="600">
+  </div>
+  
 </section>
 
 <footer>
@@ -103,6 +127,7 @@ body {
     <p>Alzheimer's Support Hub © 2024. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
   </div>
 </footer>
+
 
 <!-- Login Popup -->
 <div class="overlay" id="overlay"></div>
