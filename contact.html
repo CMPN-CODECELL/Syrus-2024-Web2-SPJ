@@ -11,6 +11,8 @@
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
+      background-color: #fff; /* Change background color to white */
+      color: #000; /* Change text color to black */
     }
     .container {
       width: 80%;
@@ -21,6 +23,40 @@
       background-color: rgba(53, 52, 52, 0.811);
       padding: 20px 0;
       text-align: center;
+      color: #fff; /* Change text color to white */
+    }
+    .contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+    }
+    .contact-form {
+      width: 50%;
+      padding: 20px;
+      border: 2px solid #000; /* Add border with black color */
+      background-color: #fff; /* Change background color to white */
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #000; /* Add border with black color */
+      border-radius: 5px;
+    }
+    .contact-form input[type="submit"] {
+      background-color: #000; /* Change submit button background color to black */
+      color: #fff; /* Change submit button text color to white */
+      border: none;
+      cursor: pointer;
+    }
+    .contact-form input[type="submit"]:hover {
+      background-color: #444; /* Darken the background color on hover */
     }
   </style>
 </head>
@@ -40,7 +76,7 @@
           <li><a href="games.html" id="gamesButton">Games</a></li>
           <!-- New buttons for resources and chatbot -->
           <li><a href="resources.html">Resources</a></li>
-          <li><a href="#" id="chatbotButton">Chatbot</a></li>
+          <li><a href="chatbot.html" id="chatbotButton">Chatbot</a></li>
           <li class="sos-button"><a href="sos.html">SOS</a></li>
         </ul>
       </nav>
@@ -50,21 +86,23 @@
 
 <section class="contact">
   <div class="container">
-    <h2>Contact Us</h2>
-    <p >Fill out the form below to get in touch with us:</p>
-    
-    <form action="submit_contact.php" method="POST" style="text-align: center;">
-      <label for="name">Your Name:</label><br>
-      <input type="text" id="name" name="name" required><br>
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <p>Fill out the form below to get in touch with us:</p>
+      
+      <form action="submit_contact.php" method="POST">
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
 
-      <label for="email">Your Email:</label><br>
-      <input type="email" id="email" name="email" required><br>
+        <label for="email">Your Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
 
-      <label for="message">Message:</label><br>
-      <textarea id="message" name="message" rows="4" required></textarea><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea><br>
 
-      <input type="submit" value="Submit">
-    </form>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
   </div>
 </section>
 
